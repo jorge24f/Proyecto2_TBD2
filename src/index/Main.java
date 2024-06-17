@@ -58,17 +58,18 @@ public class Main extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         bt_guardar_config = new javax.swing.JButton();
         panel_replicacion = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jl_tablas_origen = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_tablas_destino = new javax.swing.JList<>();
         jb_mover_a_replicar = new javax.swing.JButton();
         jb_mover_a_sin_replicar = new javax.swing.JButton();
         jb_ejecutar_replicacion = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jl_tablas_destino = new javax.swing.JList<>();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,7 +94,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         panel_configuracion.setBackground(new java.awt.Color(153, 204, 0));
-        panel_configuracion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panel_configuracion.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -297,26 +298,29 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(bt_guardar_config);
-        bt_guardar_config.setBounds(380, 360, 170, 50);
+        bt_guardar_config.setBounds(380, 370, 180, 50);
 
-        panel_configuracion.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 960, 420));
+        panel_configuracion.add(jPanel2);
+        jPanel2.setBounds(20, 20, 960, 430);
 
         tp_main.addTab("Configuración", panel_configuracion);
 
-        panel_replicacion.setBackground(new java.awt.Color(255, 255, 255));
+        panel_replicacion.setBackground(new java.awt.Color(153, 204, 0));
         panel_replicacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setText("Sin Replicar");
-        panel_replicacion.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Neo Sans Std", 1, 36)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Sin Replicar");
+
+        jLabel15.setFont(new java.awt.Font("Neo Sans Std", 1, 36)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Replicando");
-        panel_replicacion.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, -1, -1));
 
         jScrollPane2.setViewportView(jl_tablas_origen);
 
-        panel_replicacion.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 212, 233));
+        jScrollPane3.setViewportView(jl_tablas_destino);
 
         jb_mover_a_replicar.setText(">>");
         jb_mover_a_replicar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -324,7 +328,6 @@ public class Main extends javax.swing.JFrame {
                 jb_mover_a_replicarMouseClicked(evt);
             }
         });
-        panel_replicacion.add(jb_mover_a_replicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 155, -1, 33));
 
         jb_mover_a_sin_replicar.setText("<<");
         jb_mover_a_sin_replicar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -332,26 +335,81 @@ public class Main extends javax.swing.JFrame {
                 jb_mover_a_sin_replicarMouseClicked(evt);
             }
         });
-        panel_replicacion.add(jb_mover_a_sin_replicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 206, -1, 37));
 
+        jb_ejecutar_replicacion.setFont(new java.awt.Font("Neo Sans Std", 1, 24)); // NOI18N
         jb_ejecutar_replicacion.setText("Guardar");
+        jb_ejecutar_replicacion.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jb_ejecutar_replicacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_ejecutar_replicacionMouseClicked(evt);
             }
         });
-        panel_replicacion.add(jb_ejecutar_replicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, -1, 39));
 
+        jButton4.setFont(new java.awt.Font("Neo Sans Std", 1, 24)); // NOI18N
         jButton4.setText("Cancelar");
-        panel_replicacion.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, -1, 39));
+        jButton4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Neo Sans Std", 1, 48)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Tablas BD Origen");
-        panel_replicacion.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
-        jScrollPane3.setViewportView(jl_tablas_destino);
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                .addGap(122, 122, 122)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jb_mover_a_replicar)
+                    .addComponent(jb_mover_a_sin_replicar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(105, 105, 105))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(308, 308, 308)
+                .addComponent(jb_ejecutar_replicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jButton4)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jb_mover_a_replicar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_mover_a_sin_replicar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jb_ejecutar_replicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
+        );
 
-        panel_replicacion.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 210, 230));
+        panel_replicacion.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 960, 430));
 
         tp_main.addTab("Replicación", panel_replicacion);
 
@@ -1847,6 +1905,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jb_ejecutar_replicacion;
