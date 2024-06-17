@@ -84,7 +84,6 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tp_main.setBackground(new java.awt.Color(255, 255, 255));
         tp_main.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -94,7 +93,6 @@ public class Main extends javax.swing.JFrame {
         });
 
         panel_configuracion.setBackground(new java.awt.Color(153, 204, 0));
-        panel_configuracion.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -300,13 +298,27 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(bt_guardar_config);
         bt_guardar_config.setBounds(380, 370, 180, 50);
 
-        panel_configuracion.add(jPanel2);
-        jPanel2.setBounds(20, 20, 960, 430);
+        javax.swing.GroupLayout panel_configuracionLayout = new javax.swing.GroupLayout(panel_configuracion);
+        panel_configuracion.setLayout(panel_configuracionLayout);
+        panel_configuracionLayout.setHorizontalGroup(
+            panel_configuracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_configuracionLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 956, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        panel_configuracionLayout.setVerticalGroup(
+            panel_configuracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_configuracionLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
 
         tp_main.addTab("Configuración", panel_configuracion);
 
         panel_replicacion.setBackground(new java.awt.Color(153, 204, 0));
-        panel_replicacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panel_replicacion.setLayout(null);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -318,8 +330,10 @@ public class Main extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Replicando");
 
+        jl_tablas_origen.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(jl_tablas_origen);
 
+        jl_tablas_destino.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
         jScrollPane3.setViewportView(jl_tablas_destino);
 
         jb_mover_a_replicar.setText(">>");
@@ -385,7 +399,7 @@ public class Main extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -409,11 +423,12 @@ public class Main extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        panel_replicacion.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 960, 430));
+        panel_replicacion.add(jPanel5);
+        jPanel5.setBounds(20, 20, 960, 445);
 
         tp_main.addTab("Replicación", panel_replicacion);
 
-        getContentPane().add(tp_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 500));
+        getContentPane().add(tp_main, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
