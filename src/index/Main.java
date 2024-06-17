@@ -19,7 +19,7 @@ public class Main extends javax.swing.JFrame {
         jl_tablas_destino.setModel(new DefaultListModel<>());
         jl_tablas_origen.setModel(new DefaultListModel<>());
     }
-
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -120,13 +120,13 @@ public class Main extends javax.swing.JFrame {
         tf_nombre_bd_origen.setText("TestFinal");
         panel_configuracion.add(tf_nombre_bd_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 180, 20));
 
-        tf_puerto_origen.setText("5432");
+        tf_puerto_origen.setText("1433");
         panel_configuracion.add(tf_puerto_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 180, 20));
 
-        tf_usuario_origen.setText("postgres");
+        tf_usuario_origen.setText("sa");
         panel_configuracion.add(tf_usuario_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 180, 20));
 
-        pf_password_origen.setText("z3WZzaWq0O2E68L");
+        pf_password_origen.setText("admin123");
         panel_configuracion.add(pf_password_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 180, 20));
 
         bt_probar_conexion_bd_origen.setText("Probar");
@@ -150,25 +150,25 @@ public class Main extends javax.swing.JFrame {
         jLabel10.setText("Nombre Base Datos");
         panel_configuracion.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, -1, -1));
 
-        tf_nombre_bd_destino.setText("TestFinal");
+        tf_nombre_bd_destino.setText("TestDB");
         panel_configuracion.add(tf_nombre_bd_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 180, 20));
 
         jLabel11.setText("Puerto");
         panel_configuracion.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, -1, -1));
 
-        tf_puerto_destino.setText("1433");
+        tf_puerto_destino.setText("5432");
         panel_configuracion.add(tf_puerto_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 180, 20));
 
         jLabel12.setText("Nombre usuario");
         panel_configuracion.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, -1, -1));
 
-        tf_usuario_destino.setText("sa");
+        tf_usuario_destino.setText("postgres");
         panel_configuracion.add(tf_usuario_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 180, 20));
 
         jLabel13.setText("Password");
         panel_configuracion.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, -1, -1));
 
-        pf_password_destino.setText("admin123");
+        pf_password_destino.setText("z3WZzaWq0O2E68L");
         panel_configuracion.add(pf_password_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, 180, 20));
 
         bt_probar_conexion_bd_destino.setText("Probar");
@@ -180,6 +180,11 @@ public class Main extends javax.swing.JFrame {
         panel_configuracion.add(bt_probar_conexion_bd_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 350, -1, -1));
 
         bt_guardar_config.setText("Guardar");
+        bt_guardar_config.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_guardar_configMouseClicked(evt);
+            }
+        });
         panel_configuracion.add(bt_guardar_config, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 90, 40));
 
         tp_main.addTab("Configuración", panel_configuracion);
@@ -232,7 +237,7 @@ public class Main extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(jl_tablas_destino);
 
-        panel_replicacion.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 210, 230));
+        panel_replicacion.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 210, 230));
 
         tp_main.addTab("Replicación", panel_replicacion);
 
@@ -283,6 +288,8 @@ public class Main extends javax.swing.JFrame {
                 }
                 jl_tablas_origen.setModel(modeloOrigen);
             }
+            boolean flag = hasBitacora();
+            createBitacoraIfNotExists(flag);
             JOptionPane.showMessageDialog(this, "Conexión exitosa!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error!");
@@ -318,7 +325,56 @@ public class Main extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            origen.desconectar();
+            
+            
+            
+                try {
+                    destino.conectar();
+            
+                    //Drop tables if necesary
+                    //////////////////
+                    DefaultListModel m = (DefaultListModel) jl_tablas_destino.getModel();
+                    DefaultListModel m2 = (DefaultListModel) jl_tablas_origen.getModel();
+                    ArrayList<String> names = new ArrayList<>();
+                    names_delete = new ArrayList<>();
+                    for (int i = 0; i < m.getSize(); i++) {
+                        if(!m2.contains(m.getElementAt(i))){
+                            names.add(m.getElementAt(i).toString());
+                        }
+                    }
+                    names_delete=names;
+                    for (String p : names) {
+                        m.removeElement(p);
+                    }
+                    jl_tablas_destino.setModel(m);
+                    
+                    ///////////////////
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
+                /////Comparar tablas
+                ArrayList<String> tablas_iguales = new ArrayList<>();
+                DefaultListModel mod1 = (DefaultListModel) jl_tablas_origen.getModel();
+                DefaultListModel mod2 = (DefaultListModel) jl_tablas_destino.getModel();
+                for (int i = 0; i < mod1.getSize(); i++) {
+                    if(mod2.contains(mod1.getElementAt(i))){
+                        tablas_iguales.add(mod1.getElementAt(i).toString());
+                    }
+                }
+                
+                //System.out.println(tablas_iguales);
+                for (String s : tablas_iguales) {
+                    if(!comparar_tablas(s)){
+                        names_delete.add(s);
+                        mod2.removeElement(s);
+                    }
+                }
+                jl_tablas_destino.setModel(mod2);
+                ///////////////////
+                
+                origen.desconectar();
+                destino.desconectar();
             } else{
                 JOptionPane.showMessageDialog(this, "Debe probar la conexiones!");
                 tp_main.setSelectedIndex(0);
@@ -333,10 +389,38 @@ public class Main extends javax.swing.JFrame {
         String user = tf_usuario_destino.getText();
         String password = pf_password_destino.getText();
         
+        //Limpiar lista
+        jl_tablas_destino.setModel(new DefaultListModel<>());
+        DefaultListModel modeloDestino = (DefaultListModel) jl_tablas_destino.getModel();
+        
         //conexion destino
         destino = new Dba(host, dbName, user, password, port);
         try {
             destino.conectar();
+            if(destino.getPort().equals("1433")){
+                destino.query.execute("SELECT TABLE_NAME FROM "  + destino.getDbName() + ".INFORMATION_SCHEMA.TABLES"
+                    + " WHERE TABLE_TYPE = 'BASE TABLE'");
+                ResultSet rs = destino.query.getResultSet();
+                String table_name;
+                while(rs.next()){
+                    table_name = rs.getString(1);
+                    if(!table_name.equals("Bitacora")){
+                        modeloDestino.addElement(table_name);
+                    }
+                }
+                jl_tablas_destino.setModel(modeloDestino);
+            } else{
+                destino.query.execute("SELECT tablename FROM pg_tables WHERE schemaname = 'public'");
+                ResultSet rs = destino.query.getResultSet();
+                String table_name;
+                while(rs.next()){
+                    table_name = rs.getString(1);
+                    if(!table_name.equals("Bitacora") ){
+                        modeloDestino.addElement(table_name);
+                    }
+                }
+                jl_tablas_destino.setModel(modeloDestino);
+            }
             JOptionPane.showMessageDialog(this, "Conexión exitosa!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error!");
@@ -351,6 +435,22 @@ public class Main extends javax.swing.JFrame {
             if(!tablas.isEmpty()){
                 DefaultListModel modeloOrigen = (DefaultListModel) jl_tablas_origen.getModel();
                 DefaultListModel modeloDestino = (DefaultListModel) jl_tablas_destino.getModel();
+                
+                /////////////////////
+                ArrayList<String> tables = new ArrayList<>();
+                for (String t : tablas) {
+                    if(modeloDestino.contains(t)){
+                        tables.add(t);
+                    }
+                }
+                
+                for (String t : tables) {
+                    tablas.remove(t);
+                }
+                /////////////////////////
+                
+                
+                
                 for (String t : tablas) {
                     modeloOrigen.removeElement(t);
                     modeloDestino.addElement(t);
@@ -362,7 +462,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_mover_a_replicarMouseClicked
 
     private void jb_ejecutar_replicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ejecutar_replicacionMouseClicked
+        destino.conectar();
+            for (String p : names_delete) {
+                dropTable(p);
+            }
+        destino.desconectar();
+        
         if(jl_tablas_destino.getModel().getSize() > 0){
+            
             
             DefaultListModel sin_fk = tablas_sin_fk();
             for (int i = 0; i < sin_fk.getSize(); i++) {
@@ -407,6 +514,20 @@ public class Main extends javax.swing.JFrame {
             if(!tablas.isEmpty()){
                 DefaultListModel modeloOrigen = (DefaultListModel) jl_tablas_origen.getModel();
                 DefaultListModel modeloDestino = (DefaultListModel) jl_tablas_destino.getModel();
+                
+                /////////////////////
+                ArrayList<String> tables = new ArrayList<>();
+                for (String t : tablas) {
+                    if(modeloOrigen.contains(t)){
+                        tables.add(t);
+                    }
+                }
+                
+                for (String t : tables) {
+                    tablas.remove(t);
+                }
+                /////////////////////////
+                
                 for (String t : tablas) {
                     modeloDestino.removeElement(t);
                     modeloOrigen.addElement(t);
@@ -416,6 +537,10 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jb_mover_a_sin_replicarMouseClicked
+
+    private void bt_guardar_configMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardar_configMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_guardar_configMouseClicked
 
     private boolean verifyTriggers(String tableName){
         origen.conectar();
@@ -652,6 +777,12 @@ public class Main extends javax.swing.JFrame {
                                 columnas += "\"" +column_name + "\" " + "varchar" + " (" + character_maximum_length + ")";
                             } else if(data_type.equals("int")){
                                 columnas += "\"" +column_name + "\" " + "integer ";
+                            } else if(data_type.equals("smallint")){
+                                columnas += column_name + " " + "smallint ";
+                            } else if(data_type.equals("date")){
+                                columnas += column_name + " " + "date ";
+                            } else if(data_type.equals("text")){
+                                columnas += column_name + " " + "text ";
                             }
                             
                             if(is_nullable.equals("NO")){
@@ -670,6 +801,12 @@ public class Main extends javax.swing.JFrame {
                                 columnas += "\"" +column_name + "\" " + "varchar" + " (" + character_maximum_length + ")";
                             } else if(data_type.equals("int")){
                                 columnas += "\"" +column_name + "\" " + "integer " ;
+                            } else if(data_type.equals("smallint")){
+                                columnas += column_name + " " + "smallint ";
+                            } else if(data_type.equals("date")){
+                                columnas += column_name + " " + "date ";
+                            } else if(data_type.equals("text")){
+                                columnas += column_name + " " + "text ";
                             }
                             
                             if(is_nullable.equals("NO")){
@@ -753,6 +890,12 @@ public class Main extends javax.swing.JFrame {
                                 columnas += column_name + " " + "integer ";
                             } else if(data_type.equals("character varying")){
                                 columnas += column_name + " " + "varchar" + " (" + character_maximum_length + ")";
+                            } else if(data_type.equals("smallint")){
+                                columnas += column_name + " " + "smallint ";
+                            } else if(data_type.equals("date")){
+                                columnas += column_name + " " + "date ";
+                            } else if(data_type.equals("text")){
+                                columnas += column_name + " " + "text ";
                             }
                             
                             if(is_nullable.equals("NO")){
@@ -773,6 +916,12 @@ public class Main extends javax.swing.JFrame {
                                 columnas += column_name + " " + "integer " ;
                             } else if(data_type.equals("character varying")){
                                 columnas += column_name + " " + "varchar" + " (" + character_maximum_length + ")";
+                            } else if(data_type.equals("smallint")){
+                                columnas += column_name + " " + "smallint ";
+                            } else if(data_type.equals("date")){
+                                columnas += column_name + " " + "date ";
+                            } else if(data_type.equals("text")){
+                                columnas += column_name + " " + "text ";
                             }
                             
                             if(is_nullable.equals("NO")){
@@ -1314,6 +1463,12 @@ public class Main extends javax.swing.JFrame {
                                 columnas += column_name + " " + "integer ";
                             } else if(data_type.equals("character varying")){
                                 columnas += column_name + " " + "varchar" + " (" + character_maximum_length + ")";
+                            } else if(data_type.equals("smallint")){
+                                columnas += column_name + " " + "smallint ";
+                            } else if(data_type.equals("date")){
+                                columnas += column_name + " " + "date ";
+                            } else if(data_type.equals("text")){
+                                columnas += column_name + " " + "text ";
                             }
                             
                             if(is_nullable.equals("NO")){
@@ -1334,6 +1489,12 @@ public class Main extends javax.swing.JFrame {
                                 columnas += column_name + " " + "integer " ;
                             } else if(data_type.equals("character varying")){
                                 columnas += column_name + " " + "varchar" + " (" + character_maximum_length + ")";
+                            } else if(data_type.equals("smallint")){
+                                columnas += column_name + " " + "smallint ";
+                            } else if(data_type.equals("date")){
+                                columnas += column_name + " " + "date ";
+                            } else if(data_type.equals("text")){
+                                columnas += column_name + " " + "text ";
                             }
                             
                             if(is_nullable.equals("NO")){
@@ -1404,6 +1565,115 @@ public class Main extends javax.swing.JFrame {
         destino.desconectar();
         origen.desconectar();
     }
+    
+    private boolean hasBitacora(){
+        boolean flag = false;
+        try {
+            if(origen.getPort().equals("1433")){
+                origen.query.execute("SELECT TABLE_NAME FROM "  + origen.getDbName() + ".INFORMATION_SCHEMA.TABLES"+ " WHERE TABLE_TYPE = 'BASE TABLE'");
+            } else{
+                origen.query.execute("SELECT tablename FROM pg_tables WHERE schemaname = 'public'");
+            }
+            ResultSet rs = origen.query.getResultSet();
+            while(rs.next()){
+                if(rs.getString(1).equals("Bitacora")){
+                    flag = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+    
+    private void createBitacoraIfNotExists(boolean flag){
+        if(!flag){
+            String query;
+            try {
+                if(origen.getPort().equals("1433")){
+                    query = "CREATE TABLE Bitacora (\n" +
+                        "    id INT IDENTITY PRIMARY KEY,\n" +
+                        "    accion NVARCHAR(50),\n" +
+                        "    tabla NVARCHAR(50),\n" +
+                        "    atributos NVARCHAR(MAX),\n" +
+                        "    olddatos NVARCHAR(MAX),\n" +
+                        "    newdatos NVARCHAR(MAX),\n" +
+                        "    replicado BIT DEFAULT 0\n" +
+                        ");";
+                } else{
+                    query = "CREATE TABLE public.\"Bitacora\"\n" +
+                        "(\n" +
+                        "    id serial,\n" +
+                        "    accion text,\n" +
+                        "    tabla text,\n" +
+                        "    atributos text,\n" +
+                        "    olddatos text,\n" +
+                        "    newdatos text,\n" +
+                        "    replicado integer,\n" +
+                        "    PRIMARY KEY (id)\n" +
+                        ");";
+                }
+                //System.out.println(query);
+                origen.query.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void dropTable(String tableName){
+        try {
+            if(destino.getPort().equals("1433")){
+                destino.query.execute("DROP TABLE " + tableName);
+            } else{
+                destino.query.execute("DROP TABLE public.\"" + tableName + "\"");
+                //System.out.println("DROP TABLE public.\"" + tableName + "\"");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private boolean comparar_tablas(String tableName){
+        origen.conectar();
+        destino.conectar();
+        boolean flag = true;
+        try {
+            String query1;
+            String query2;
+            if(origen.getPort().equals("1433")){
+                query1 = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '"+tableName+"'";
+            } else{
+                query1 = "SELECT column_name FROM information_schema.columns WHERE table_name = '"+tableName+"'";
+            }
+            
+            if(destino.getPort().equals("1433")){
+                query2 = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '"+tableName+"'";
+            }else{
+                query2 = "SELECT column_name FROM information_schema.columns WHERE table_name = '"+tableName+"'";
+            }
+            
+            origen.query.execute(query1);
+            destino.query.execute(query2);
+            ResultSet rs = origen.query.getResultSet();
+            ResultSet rs2 = destino.query.getResultSet();
+                    
+            ArrayList<String> tablas1 = new ArrayList();
+            ArrayList<String> tablas2 = new ArrayList();
+            while(rs.next()){
+                tablas1.add(rs.getString(1));
+            }
+            while(rs2.next()){
+                tablas2.add(rs2.getString(1));
+            }
+            if(!tablas1.equals(tablas2)){
+                flag = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1483,4 +1753,5 @@ public class Main extends javax.swing.JFrame {
 
     private Dba origen;
     private Dba destino;
+    ArrayList<String> names_delete;
 }

@@ -176,7 +176,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tf_puerto_origen">
               <Properties>
-                <Property name="text" type="java.lang.String" value="5432"/>
+                <Property name="text" type="java.lang.String" value="1433"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -186,7 +186,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tf_usuario_origen">
               <Properties>
-                <Property name="text" type="java.lang.String" value="postgres"/>
+                <Property name="text" type="java.lang.String" value="sa"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -196,7 +196,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="pf_password_origen">
               <Properties>
-                <Property name="text" type="java.lang.String" value="z3WZzaWq0O2E68L"/>
+                <Property name="text" type="java.lang.String" value="admin123"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -262,7 +262,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tf_nombre_bd_destino">
               <Properties>
-                <Property name="text" type="java.lang.String" value="TestFinal"/>
+                <Property name="text" type="java.lang.String" value="TestDB"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -282,7 +282,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tf_puerto_destino">
               <Properties>
-                <Property name="text" type="java.lang.String" value="1433"/>
+                <Property name="text" type="java.lang.String" value="5432"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -302,7 +302,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tf_usuario_destino">
               <Properties>
-                <Property name="text" type="java.lang.String" value="sa"/>
+                <Property name="text" type="java.lang.String" value="postgres"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -322,7 +322,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="pf_password_destino">
               <Properties>
-                <Property name="text" type="java.lang.String" value="admin123"/>
+                <Property name="text" type="java.lang.String" value="z3WZzaWq0O2E68L"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -347,6 +347,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_guardar_configMouseClicked"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="430" y="370" width="90" height="40"/>
@@ -491,7 +494,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="660" y="110" width="210" height="230"/>
+                  <AbsoluteConstraints x="660" y="120" width="210" height="230"/>
                 </Constraint>
               </Constraints>
 
