@@ -27,20 +27,20 @@ public class Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         tp_main = new javax.swing.JTabbedPane();
         panel_configuracion = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        tf_instancia_origen = new javax.swing.JTextField();
-        tf_nombre_bd_origen = new javax.swing.JTextField();
-        tf_puerto_origen = new javax.swing.JTextField();
-        tf_usuario_origen = new javax.swing.JTextField();
         pf_password_origen = new javax.swing.JPasswordField();
-        bt_probar_conexion_bd_origen = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tf_usuario_origen = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        tf_puerto_origen = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tf_nombre_bd_origen = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        tf_instancia_origen = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         tf_instancia_destino = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -51,7 +51,11 @@ public class Main extends javax.swing.JFrame {
         tf_usuario_destino = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         pf_password_destino = new javax.swing.JPasswordField();
+        jPanel3 = new javax.swing.JPanel();
+        bt_probar_conexion_bd_origen = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         bt_probar_conexion_bd_destino = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         bt_guardar_config = new javax.swing.JButton();
         panel_replicacion = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -88,104 +92,214 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        panel_configuracion.setBackground(new java.awt.Color(255, 255, 255));
+        panel_configuracion.setBackground(new java.awt.Color(153, 204, 0));
         panel_configuracion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Configuración de Bases de Datos");
-        panel_configuracion.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Base de Datos Origen");
-        panel_configuracion.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        jLabel17.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel17.setFont(new java.awt.Font("British Shorthair", 1, 65)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Bases de Datos");
+        jPanel2.add(jLabel17);
+        jLabel17.setBounds(430, 10, 440, 100);
 
-        jLabel3.setText("Nombre Instancia");
-        panel_configuracion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Neo Sans Std", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Configuración de");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(80, 20, 386, 58);
 
-        jLabel4.setText("Nombre Base Datos");
-        panel_configuracion.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
-
-        jLabel5.setText("Puerto");
-        panel_configuracion.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
-
-        jLabel6.setText("Nombre usuario");
-        panel_configuracion.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
-
+        jLabel7.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
         jLabel7.setText("Password");
-        panel_configuracion.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
-
-        tf_instancia_origen.setText("localhost");
-        panel_configuracion.add(tf_instancia_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 180, 20));
-
-        tf_nombre_bd_origen.setText("TestFinal");
-        panel_configuracion.add(tf_nombre_bd_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 180, 20));
-
-        tf_puerto_origen.setText("1433");
-        panel_configuracion.add(tf_puerto_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 180, 20));
-
-        tf_usuario_origen.setText("sa");
-        panel_configuracion.add(tf_usuario_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 180, 20));
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(46, 301, 51, 16);
 
         pf_password_origen.setText("admin123");
-        panel_configuracion.add(pf_password_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 180, 20));
+        jPanel2.add(pf_password_origen);
+        pf_password_origen.setBounds(166, 301, 180, 20);
 
+        jLabel6.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel6.setText("Nombre usuario");
+        jPanel2.add(jLabel6);
+        jLabel6.setBounds(46, 261, 82, 16);
+
+        tf_usuario_origen.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
+        tf_usuario_origen.setText("sa");
+        jPanel2.add(tf_usuario_origen);
+        tf_usuario_origen.setBounds(166, 261, 180, 20);
+
+        jLabel5.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel5.setText("Puerto");
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(46, 221, 36, 16);
+
+        tf_puerto_origen.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
+        tf_puerto_origen.setText("1433");
+        jPanel2.add(tf_puerto_origen);
+        tf_puerto_origen.setBounds(166, 221, 180, 20);
+
+        jLabel4.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel4.setText("Nombre Base Datos");
+        jPanel2.add(jLabel4);
+        jLabel4.setBounds(46, 181, 103, 16);
+
+        tf_nombre_bd_origen.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
+        tf_nombre_bd_origen.setText("TestFinal");
+        jPanel2.add(tf_nombre_bd_origen);
+        tf_nombre_bd_origen.setBounds(166, 181, 180, 20);
+
+        jLabel3.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel3.setText("Nombre Instancia");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(46, 141, 91, 16);
+
+        tf_instancia_origen.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
+        tf_instancia_origen.setText("localhost");
+        jPanel2.add(tf_instancia_origen);
+        tf_instancia_origen.setBounds(166, 141, 180, 20);
+
+        jLabel1.setFont(new java.awt.Font("Neo Sans Std", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BASE DE DATOS DE ORIGEN");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(46, 101, 310, 30);
+
+        jLabel9.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel9.setText("Nombre Instancia");
+        jPanel2.add(jLabel9);
+        jLabel9.setBounds(582, 148, 91, 16);
+
+        tf_instancia_destino.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
+        tf_instancia_destino.setText("localhost");
+        jPanel2.add(tf_instancia_destino);
+        tf_instancia_destino.setBounds(692, 148, 180, 20);
+
+        jLabel10.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel10.setText("Nombre Base Datos");
+        jPanel2.add(jLabel10);
+        jLabel10.setBounds(582, 188, 103, 16);
+
+        tf_nombre_bd_destino.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
+        tf_nombre_bd_destino.setText("TestDB");
+        jPanel2.add(tf_nombre_bd_destino);
+        tf_nombre_bd_destino.setBounds(692, 188, 180, 20);
+
+        jLabel11.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel11.setText("Puerto");
+        jPanel2.add(jLabel11);
+        jLabel11.setBounds(582, 228, 36, 16);
+
+        tf_puerto_destino.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
+        tf_puerto_destino.setText("5432");
+        jPanel2.add(tf_puerto_destino);
+        tf_puerto_destino.setBounds(692, 228, 180, 20);
+
+        jLabel12.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel12.setText("Nombre usuario");
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(582, 268, 82, 16);
+
+        tf_usuario_destino.setFont(new java.awt.Font("Neo Sans Std Light", 0, 12)); // NOI18N
+        tf_usuario_destino.setText("postgres");
+        jPanel2.add(tf_usuario_destino);
+        tf_usuario_destino.setBounds(692, 268, 180, 20);
+
+        jLabel13.setFont(new java.awt.Font("Neo Sans Std", 0, 12)); // NOI18N
+        jLabel13.setText("Password");
+        jPanel2.add(jLabel13);
+        jLabel13.setBounds(582, 308, 51, 16);
+
+        pf_password_destino.setText("z3WZzaWq0O2E68L");
+        jPanel2.add(pf_password_destino);
+        pf_password_destino.setBounds(692, 308, 180, 20);
+
+        bt_probar_conexion_bd_origen.setFont(new java.awt.Font("Neo Sans Std", 1, 14)); // NOI18N
         bt_probar_conexion_bd_origen.setText("Probar");
+        bt_probar_conexion_bd_origen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_probar_conexion_bd_origen.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        bt_probar_conexion_bd_origen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         bt_probar_conexion_bd_origen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_probar_conexion_bd_origenMouseClicked(evt);
             }
         });
-        panel_configuracion.add(bt_probar_conexion_bd_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setText("Base de Datos Destino");
-        panel_configuracion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, -1, -1));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(bt_probar_conexion_bd_origen, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(258, Short.MAX_VALUE)
+                .addComponent(bt_probar_conexion_bd_origen)
+                .addGap(17, 17, 17))
+        );
 
-        jLabel9.setText("Nombre Instancia");
-        panel_configuracion.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, -1, -1));
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(30, 90, 340, 300);
 
-        tf_instancia_destino.setText("localhost");
-        panel_configuracion.add(tf_instancia_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 180, 20));
-
-        jLabel10.setText("Nombre Base Datos");
-        panel_configuracion.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, -1, -1));
-
-        tf_nombre_bd_destino.setText("TestDB");
-        panel_configuracion.add(tf_nombre_bd_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 180, 20));
-
-        jLabel11.setText("Puerto");
-        panel_configuracion.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, -1, -1));
-
-        tf_puerto_destino.setText("5432");
-        panel_configuracion.add(tf_puerto_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 180, 20));
-
-        jLabel12.setText("Nombre usuario");
-        panel_configuracion.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, -1, -1));
-
-        tf_usuario_destino.setText("postgres");
-        panel_configuracion.add(tf_usuario_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 180, 20));
-
-        jLabel13.setText("Password");
-        panel_configuracion.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, -1, -1));
-
-        pf_password_destino.setText("z3WZzaWq0O2E68L");
-        panel_configuracion.add(pf_password_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, 180, 20));
-
+        bt_probar_conexion_bd_destino.setFont(new java.awt.Font("Neo Sans Std", 1, 14)); // NOI18N
         bt_probar_conexion_bd_destino.setText("Probar");
+        bt_probar_conexion_bd_destino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_probar_conexion_bd_destino.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        bt_probar_conexion_bd_destino.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         bt_probar_conexion_bd_destino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_probar_conexion_bd_destinoMouseClicked(evt);
             }
         });
-        panel_configuracion.add(bt_probar_conexion_bd_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 350, -1, -1));
 
-        bt_guardar_config.setText("Guardar");
+        jLabel8.setFont(new java.awt.Font("Neo Sans Std", 1, 24)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("BASE DE DATOS DE DESTINO");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(bt_probar_conexion_bd_destino, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(bt_probar_conexion_bd_destino)
+                .addGap(25, 25, 25))
+        );
+
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(570, 90, 340, 310);
+
+        bt_guardar_config.setFont(new java.awt.Font("Neo Sans Std", 1, 24)); // NOI18N
+        bt_guardar_config.setText("GUARDAR");
+        bt_guardar_config.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_guardar_config.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         bt_guardar_config.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_guardar_configMouseClicked(evt);
             }
         });
-        panel_configuracion.add(bt_guardar_config, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 90, 40));
+        jPanel2.add(bt_guardar_config);
+        bt_guardar_config.setBounds(380, 360, 170, 50);
+
+        panel_configuracion.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 960, 420));
 
         tp_main.addTab("Configuración", panel_configuracion);
 
@@ -1720,6 +1834,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1729,6 +1844,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jb_ejecutar_replicacion;
