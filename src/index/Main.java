@@ -491,6 +491,8 @@ public class Main extends javax.swing.JFrame {
             if(origen != null && destino != null){
                 //validar existencia de triggers y crearlos si no existen
                 //validar que existe bitacora y si no crearla
+                cargar_tablas_destino();
+                cargar_tablas_origen();
                 try {
                     origen.conectar();
                     DefaultListModel modelo = (DefaultListModel) jl_tablas_origen.getModel();
@@ -1860,7 +1862,80 @@ public class Main extends javax.swing.JFrame {
             e.printStackTrace();
         }
         return flag;
-    }    
+    }   
+    
+    private void cargar_tablas_origen(){
+        try{
+        jl_tablas_origen.setModel(new DefaultListModel<>());
+        DefaultListModel modeloOrigen = (DefaultListModel) jl_tablas_origen.getModel();
+        origen.conectar();
+            if(origen.getPort().equals("1433")){
+                origen.query.execute("SELECT TABLE_NAME FROM "  + origen.getDbName() + ".INFORMATION_SCHEMA.TABLES"
+                    + " WHERE TABLE_TYPE = 'BASE TABLE'");
+                ResultSet rs = origen.query.getResultSet();
+                String table_name;
+                while(rs.next()){
+                    table_name = rs.getString(1);
+                    if(!table_name.equals("Bitacora") && !table_name.equals("TablasReplicar") && !table_name.equals("JobHistory")){
+                        modeloOrigen.addElement(table_name);
+                    }
+                }
+                jl_tablas_origen.setModel(modeloOrigen);
+            } else{
+                // POSTRESQL
+                origen.query.execute("SELECT tablename FROM pg_tables WHERE schemaname = 'public'");
+                ResultSet rs = origen.query.getResultSet();
+                String table_name;
+                while(rs.next()){
+                    table_name = rs.getString(1);
+                    if(!table_name.equals("Bitacora") && !table_name.equals("TablasReplicar") && !table_name.equals("JobHistory")){
+                        modeloOrigen.addElement(table_name);
+                    }
+                }
+                jl_tablas_origen.setModel(modeloOrigen);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+            origen.desconectar();
+    }
+    
+    private void cargar_tablas_destino(){
+        //Limpiar lista
+        jl_tablas_destino.setModel(new DefaultListModel<>());
+        DefaultListModel modeloDestino = (DefaultListModel) jl_tablas_destino.getModel();
+
+        try {
+            destino.conectar();
+            if(destino.getPort().equals("1433")){
+                destino.query.execute("SELECT TABLE_NAME FROM "  + destino.getDbName() + ".INFORMATION_SCHEMA.TABLES"
+                    + " WHERE TABLE_TYPE = 'BASE TABLE'");
+                ResultSet rs = destino.query.getResultSet();
+                String table_name;
+                while(rs.next()){
+                    table_name = rs.getString(1);
+                    if(!table_name.equals("Bitacora")){
+                        modeloDestino.addElement(table_name);
+                    }
+                }
+                jl_tablas_destino.setModel(modeloDestino);
+            } else{
+                destino.query.execute("SELECT tablename FROM pg_tables WHERE schemaname = 'public'");
+                ResultSet rs = destino.query.getResultSet();
+                String table_name;
+                while(rs.next()){
+                    table_name = rs.getString(1);
+                    if(!table_name.equals("Bitacora") ){
+                        modeloDestino.addElement(table_name);
+                    }
+                }
+                jl_tablas_destino.setModel(modeloDestino);
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        destino.desconectar();
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
